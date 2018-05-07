@@ -21,7 +21,7 @@ enum Interest { Bored = 42, Interested, Neutral };
 var myInterest: Interest = Interest.Interested;
 console.log(`Interest Level = ${Interest[myInterest]}`);
 
-function returnsNada(): void {
+function returnsNothing(): void {
     // return 1;
 }
 
