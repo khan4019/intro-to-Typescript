@@ -190,6 +190,8 @@
 						<li>number</li>
 						<li>string</li>
 						<li>Array</li>
+						<li>union type</li>
+						<li>Any</li>
 					</ul>
 				</section>
 				<section>
@@ -207,24 +209,50 @@
 							let nums: number[] = [1, 2, 3, 4, 5]
 							let friends:string[] = ['BatMan', 'CatMan', 'FatMan', 'GoatMan']
 						</code></pre>
-				</section>				
+					<pre class="fragment typescript"><code data-trim>
+							
+let names: string | string[];
+names = "JS Dude"
+names = ['Tom cruise', 'Tom Hancks', 'Tom nobody']
+						</code></pre>
+				</section>
+				<section>
+					<h2>Any</h2>
+					<pre class="typescript"><code data-trim>
+								let notSure: any = 4;
+								notSure = "maybe a string instead";
+								notSure = false; // okay, definitely a boolean
+						</code></pre>
+					<pre class="typescript"><code data-trim>
+								let list: any[] = [1, true, "free"];
+	
+								list[1] = 100;
+								
+						</code></Pre>
+				</section>
 				<section>
 					<h2>Basic types</h2>
 					<ul>
 						<li>Tuple</li>
 						<li>Enum</li>
-						<li>Any</li>
-
 					</ul>
 				</section>
 				<section>
 					<h2>Tuple</h2>
 					<pre class="typescript"><code data-trim>
-						//learn more
+							let salaryBox: [string, number];
+
+							salaryBox = ['GoatMan', 1000]
+							
+							
+							
+							salaryBox[2] = 'abc'
+							// salaryBox[3] = true
+							
 					</code></pre>
 					<aside class="notes">
-						<p>Tuple types allow you to express an array where the type of a fixed number of elements is known, but need not be the
-							same. For example, you may want to represent a value as a pair of a string and a number:</p>
+						<p>Tuple types allow you to express an array where the type of a fixed number of elements is known, </p>
+						<p>but need not be the same. </p>
 					</aside>
 				</section>
 				<section>
@@ -233,36 +261,17 @@
 
 							enum Color {Red, Green, Blue}
 							let c: Color = Color.Green;
-					</code></pre>
-					<pre class="typescript"><code data-trim>
-enum Color {Red = 1, Green, Blue}
-let c: Color = Color.Green;
 
+							let colorName: string = Color[2];
+							alert(colorName); // Displays 'Green' as its value is 2 above
+					</code></pre>
+					<pre class="fragment typescript"><code data-trim>
+enum Color {Red = 1, Green, Blue}
 enum Color {Red = 1, Green = 2, Blue = 4}
 let c: Color = Color.Green;
 					</code></pre>
-					<pre class="typescript"><code data-trim>
-							enum Color {Red = 1, Green, Blue}
-							let colorName: string = Color[2];
-							
-							alert(colorName); // Displays 'Green' as its value is 2 above
-							
-					</code></pre>
 				</section>
-				<section>
-					<h2>Any</h2>
-					<pre class="typescript"><code data-trim>
-							let notSure: any = 4;
-							notSure = "maybe a string instead";
-							notSure = false; // okay, definitely a boolean
-					</code></pre>
-					<pre class="typescript"><code data-trim>
-							let list: any[] = [1, true, "free"];
 
-							list[1] = 100;
-							
-					</code></Pre>
-				</section>
 				<section>
 					<h2>Basic types</h2>
 					<ul>
@@ -275,12 +284,23 @@ let c: Color = Color.Green;
 				<section>
 					<pre class="typescript"><code data-trim>
 							function warnUser(): void {
-								alert("This is my warning message");
+							   alert("This is my warning message");
 							}
 					</code></pre>
 					<pre class="typescript"><code data-trim>
 							let u: undefined = undefined;
 							let n: null = null;
+					</code></pre>
+				</section>
+				<section>
+					<h2>Never</h2>
+					<pre class="typescript"><code data-trim>
+							// Function returning never must have unreachable end point
+							function infiniteLoop(): never {
+								while (true) {
+								}
+							}
+							
 					</code></pre>
 				</section>
 			</section>
@@ -289,59 +309,68 @@ let c: Color = Color.Green;
 					<h1>Function</h1>
 				</section>
 				<section>
-					<pre><code>
+					<pre class="typescript"><code data-trim>
 							function add(x: number, y: number): number {
-								return x + y;
+							  return x + y;
 							}
 							
-							let myAdd = function(x: number, y: number): number { return x + y; };
+							let abc = (x: number): number => 2 * x;
+
+							let def: number = abc(20);
 					</code></pre>
-				</section>
-				<section>
-					<pre><code>
-							let myAdd: (x: number, y: number) => number =
-							function(x: number, y: number): number { return x + y; };
+					<pre class="fragment typescript"><code data-trim>
+							function add(x: number, y: number): void {
+							  console.log(x + y);
+							}
 					</code></pre>
 				</section>
 				<section>
 					<h2>Optional Parameter</h2>
-					<pre><code>
+					<pre class="typescript"><code data-trim>
 							function buildName(firstName: string, lastName?: string) {
-								if (lastName)
-									return firstName + " " + lastName;
-								else
-									return firstName;
+							  if (lastName)
+							    return firstName + " " + lastName;
+							  else
+							    return firstName;
 							}
 							
-							let result1 = buildName("Bob");                  // works correctly now
-							let result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
-							let result3 = buildName("Bob", "Adams");         // ah, just right
+							let result1 = buildName("Bob");                  
+							let result3 = buildName("Bob", "Adams");       
+							// error, too many parameters  
+							let result2 = buildName("Bob", "Adams", "Sr.");
 					</code></pre>
 					<p>Any optional parameters must follow required parameters. </p>
 				</section>
 				<section>
 					<h2>Default Parameter</h2>
-					<pre><code>
+					<pre class="typescript"><code data-trim>
 							function buildName(firstName: string, lastName = "Smith") {
-								return firstName + " " + lastName;
+							  return firstName + " " + lastName;
 							}
 							
-							let result1 = buildName("Bob");                  // works correctly now, returns "Bob Smith"
-							let result2 = buildName("Bob", undefined);       // still works, also returns "Bob Smith"
-							let result3 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
-							let result4 = buildName("Bob", "Adams");         // ah, just right
+							let result1 = buildName("Bob");                  
+							let result2 = buildName("Bob", undefined);       
+							let result4 = buildName("Bob", "Adams");         
 					</code></pre>
 					<p>Default-initialized parameters that come after all required parameters are treated as optional, </p>
 				</section>
-				<section>
+				<!-- <section>
 					<h2>Rest Parameters</h2>
-					<pre><code>
+					<pre class="typescript"><code data-trim>
 							function buildName(firstName: string, ...restOfName: string[]) {
 								return firstName + " " + restOfName.join(" ");
 							}
 							
 							let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 					</code></pre>
+				</section> -->
+			</section>
+			<section>
+				<section>
+					<h2>Quiz Time</h2>
+				</section>
+				<section>
+					<p>What is Never type?</p>
 				</section>
 			</section>
 			<section>
@@ -356,42 +385,22 @@ let c: Color = Color.Green;
 						<li>Properties that are require</li>
 						<li>It's okay to have extra properties</li>
 						<li>Describe the public side of the class</li>
+						<li class="fragment">TypeScript uses interfaces solely for type-checking purposes.</li>
 					</ul>
 				</section>
 				<section>
 					<pre class="typescript"><code data-trim>
-							interface LabelledValue {
-								label: string;
+							interface iUser{
+								readonly id: number
+								name?:string
 							}
 							
-							function printLabel(labelledObj: LabelledValue) {
-								console.log(labelledObj.label);
+							function userLoaded(user: iUser): void{
+								console.log(user.id);
 							}
 							
-							let myObj = {size: 10, label: "Size 10 Object"};
-							printLabel(myObj);
-					</code></pre>
-				</section>
-				<section>
-					<h2>Optional Properties</h2>
-					<pre class="typescript"><code data-trim>
-							interface SquareConfig {
-								color?: string;
-								width?: number;
-							}
 							
-							function createSquare(config: SquareConfig): {color: string; area: number} {
-								let newSquare = {color: "white", area: 100};
-								if (config.color) {
-									newSquare.color = config.color;
-								}
-								if (config.width) {
-									newSquare.area = config.width * config.width;
-								}
-								return newSquare;
-							}
-							
-							let mySquare = createSquare({color: "black"});
+							userLoaded({ id: 22 });
 					</code></pre>
 				</section>
 				<section>
@@ -415,17 +424,19 @@ let c: Color = Color.Green;
 			<section>
 				<section>
 					<h1>Classes</h1>
+					(mostly in ES6)
 				</section>
 				<section>
 					<pre class="typescript"><code data-trim>
 							class Greeter {
-								greeting: string;
-								constructor(message: string) {
-									this.greeting = message;
-								}
-								greet() {
-									return "Hello, " + this.greeting;
-								}
+							  greeting: string;
+
+							  constructor(message: string) {
+							    this.greeting = message;
+							  }
+							  greet() {
+							    return "Hello, " + this.greeting;
+							  }
 							}
 							
 							let greeter = new Greeter("world");
@@ -436,100 +447,112 @@ let c: Color = Color.Green;
 					</aside>
 				</section>
 				<section>
-					<p>private member cannot be accessed from outside of its containing class.</p>
+					<h4>Private</h4>
 					<pre class="typescript"><code data-trim>
 						class Animal {
-							private name: string;
-							constructor(theName: string) { this.name = theName; }
+						  private name: string;
+
+						  constructor(theName: string) { 
+						    this.name = theName; 
+						  }
 						}
 						
 						new Animal("Cat").name; // Error: 'name' is private;
 					</code></pre>
+					<p>private member cannot be accessed from outside of its containing class.</p>
 				</section>
 				<section>
-					<h2>Protected</h2>
-					<p>Protected members are like private</p>
-					<p>Can also be accessed within deriving classes</p>
+					<h5>Protected</h5>
 					<pre class="typescript"><code data-trim>
 							class Person {
-								protected name: string;
-								constructor(name: string) { this.name = name; }
+							  protected name: string;
+							  constructor(name: string) { this.name = name; }
 							}
-							
+					</code></pre>
+					<pre class="typescript"><code data-trim>
 							class Employee extends Person {
-								private department: string;
+							  private department: string;
+							  constructor(name: string, department: string) {
+							    super(name);
+							    this.department = department;
+							  }
 							
-								constructor(name: string, department: string) {
-									super(name);
-									this.department = department;
-								}
-							
-								public getElevatorPitch() {
-									return `Hello, my name is ${this.name} and I work in ${this.department}.`;
-								}
+							  public getElevatorPitch() {
+							    return `Hello, my name is ${this.name}`;
+							  }
 							}
-							
+					</code></pre>
+					<pre class="typescript"><code data-trim>
 							let howard = new Employee("Howard", "Sales");
 							console.log(howard.getElevatorPitch());
 							console.log(howard.name); // error
 					</code></pre>
+					<small>Protected members are like private</small>
+					<small>Can also be accessed within deriving classes</small>
 				</section>
 				<section>
 					<h2>Readonly modifier</h2>
-					<p>Readonly properties must be initialized at their declaration or in the constructor.</p>
 					<pre class="typescript"><code data-trim>
 							class Octopus {
-								readonly name: string;
-								readonly numberOfLegs: number = 8;
-								constructor (theName: string) {
-									this.name = theName;
-								}
+							  readonly name: string;
+							  readonly numberOfLegs: number = 8;
+							  constructor (theName: string) {
+							    this.name = theName;
+							  }
 							}
+
 							let dad = new Octopus("Man with the 8 strong legs");
-							dad.name = "Man with the 3-piece suit"; // error! name is readonly.
+							
+							// error! name is readonly.
+							dad.name = "Man with the 3-piece suit"; 
 							
 					</code></pre>
-				</section>
-				<section>
-					<h2>Accessor</h2>
-				</section>
-				<section>
-					<h2>Static Properties</h2>
+					<br>
+					<small>Readonly properties must be initialized at their declaration or in the constructor.</small>
+					
 				</section>
 				<section>
 					<h2>Abstract Classes</h2>
+					<pre class="typescript"><code data-trim>
+							abstract class Department {
+
+								constructor(public name: string) {
+								}
+							
+								printName(): void {
+									console.log("Department name: " + this.name);
+								}
+								// must be implemented in derived classes
+								abstract printMeeting(): void; 
+							}
+					</code></pre>
+					<p><small> Unlike an interface, an abstract class may contain implementation details for its members. </small></p>
+					<p><small></small></p>
 				</section>
 				<section>
+					<h2>Mixins</h2>
 					<pre class="typescript"><code data-trim>
-							class Animal {
-								name: string;
-								constructor(theName: string) { this.name = theName; }
-								move(distanceInMeters: number = 0) {
-									console.log(`${this.name} moved ${distanceInMeters}m.`);
+							class Disposable {
+								isDisposed: boolean;
+								dispose() {
+									this.isDisposed = true;
+								}
+							
+							}
+					</code></pre>
+					<pre class="typescript"><code data-trim>
+							class Activatable {
+								isActive: boolean;
+								activate() {
+									this.isActive = true;
+								}
+								deactivate() {
+									this.isActive = false;
 								}
 							}
-							
-							class Snake extends Animal {
-								constructor(name: string) { super(name); }
-								move(distanceInMeters = 5) {
-									console.log("Slithering...");
-									super.move(distanceInMeters);
-								}
-							}
-							
-							class Horse extends Animal {
-								constructor(name: string) { super(name); }
-								move(distanceInMeters = 45) {
-									console.log("Galloping...");
-									super.move(distanceInMeters);
-								}
-							}
-							
-							let sam = new Snake("Sammy the Python");
-							let tom: Animal = new Horse("Tommy the Palomino");
-							
-							sam.move();
-							tom.move(34);
+					</code></pre>
+					<pre class="fragment typescript"><code data-trim>
+							class SmartObject implements Disposable, Activatable {
 					</code></pre>
 				</section>
 			</section>
@@ -549,7 +572,7 @@ let c: Color = Color.Green;
 				</section>
 				<section>
 					<h3>Class Decorator</h3>
-					<pre><code>
+					<pre class="typescript"><code data-trim>
 							@sealed
 							class Greeter {
 								greeting: string;
@@ -561,14 +584,12 @@ let c: Color = Color.Green;
 								}
 							}
 					</code></pre>
-					<pre><code>
+					<pre class="typescript"><code data-trim>
 							unction sealed(constructor: Function) {
 								Object.seal(constructor);
 								Object.seal(constructor.prototype);
 							}
 					</code></pre>
-				</section>
-				<section>
 					<p>
 						<small>
 							<a href="https://www.typescriptlang.org/docs/handbook/decorators.html">decorator</a>
@@ -588,7 +609,37 @@ let c: Color = Color.Green;
 				</section>
 				<section>
 					<h3>React</h3>
+					<pre class="batch"><code data-trim>
+						npm install -g create-react-app
 
+						create-react-app my-app --scripts-version=react-scripts-ts
+						cd my-app/
+						npm start
+					</code></pre>
+					<p>use .tsx instead of .jsx</p>
+					<p>
+						<small>
+							<a href="https://github.com/wmonk/create-react-app-typescript">create-react-app-typescript</a>
+						</small>
+					</p>
+				</section>
+				<section>
+					<h2>Angular</h2>
+					<pre><code data-trim>
+							npm install -g @angular/cli
+							ng new PROJECT-NAME
+							cd PROJECT-NAME
+							ng serve
+					</code></pre>
+					<br>
+					<p>
+						<small>
+							<a href="https://github.com/angular/angular-cli">angular cli</a>
+						</small>
+					</p>
+				</section>
+				<section>
+					<img src="./images//trend.png" alt="">
 				</section>
 			</section>
 			<section>
