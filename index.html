@@ -44,11 +44,9 @@
 				<h3>Introduction</h3>
 				<h5>to</h5>
 				<h1>Typescript</h1>
+				<br>
+				<br>
 				<p>
-					<!-- <small>by
-							<a href="https://twitter.com/Karinaislam2">Karina</a> and
-							<a href="https://jsdude.com">Jhankar</a>
-						</small> -->
 					<small>
 						<a href="http://thatjsdude.com/">www.thatJSDude.com</a>
 					</small>
@@ -94,21 +92,36 @@
 			<section>
 				<h2>We will cover</h2>
 				<ol>
-					<li>What problem does Typescript solves</li>
 					<li>Why you should consider Typescript</li>
 					<li>How to run Typescript</li>
 					<li>Features in typescript (excluding ES6)</li>
+					<li>Use Typescript with popular framework</li>
 					<li>When not to use Typescript</li>
 
 				</ol>
 			</section>
 			<section>
-				<h2>Typescript is a super set</h2>
-				<img src="./images//venn-es5-es6-typescript.png" alt="">
+				<section>
+					<h1>What is Typescript</h1>
+				</section>
+				<section>
+					<h2>Typescript</h2>
+					<ul>
+						<li>Strong Typing </li>
+						<li>Compile time checking</li>
+						<li>Better linting</li>
+						<li>Better tooling (intellisense, refactor)</li>
+						<li>Extra features (Decorator, Access modifier)</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Typescript is a super set</h2>
+					<img src="./images//venn-es5-es6-typescript.png" alt="">
+				</section>
 			</section>
 			<section>
 				<section>
-					<h1>JS Error</h1>
+					<h2>When to consider Typescript</h2>
 				</section>
 				<section>
 					<p>Uncaught TypeError: Cannot read property</p>
@@ -130,22 +143,43 @@
 					<h2>Top 10 JS errors</h2>
 					<img src="./images/errors.png" alt="">
 				</section>
+				<section>
+					<h2>Other cases</h2>
+					<ul>
+						<li>Large projects</li>
+						<li>External modules and libraries</li>
+						<li>.Net or Java background</li>
+						<li>Angular2</li>
+						<li class="fragment">Your manager told you to use it</li>
+					</ul>
+				</section>
 			</section>
 			<section>
-				<h2>Install Typescript</h2>
-				<br>
-				<br>
-				<pre class="typescript"><code data-trim>
-							npm install -g typescript
-					</code></pre>
-				<pre class="typescript"><code data-trim>
-							tsc hello.ts
-					</code></pre>
-				<ul>
-					<li>webpack plugin</li>
-					<li>VS code tooling</li>
-					<li>typescript playground</li>
-				</ul>
+				<section>
+					<h1>Install Typescript</h1>
+				</section>
+				<section>
+					<h2>Install Typescript</h2>
+					<br>
+					<br>
+					<pre class="typescript"><code data-trim>
+									npm install -g typescript
+							</code></pre>
+					<pre class="fragment typescript"><code data-trim>
+									tsc hello.ts
+							</code></pre>
+				</section>
+				<section>
+					<ul>
+						<li>typescript playground</li>
+						<li>VS code tooling</li>
+						<li>webpack plugin</li>
+						<li>tsconfig.json</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<h1>Let's start</h1>
 			</section>
 			<section>
 				<section>
@@ -527,6 +561,56 @@ let c: Color = Color.Green;
 					<h1>Decorator</h1>
 				</section>
 				<section>
+					<p>Decorator is a special kind of declaration that can be attached to</p>
+					<ul>
+						<li>Class</li>
+						<li>Method</li>
+						<li>Accessor</li>
+						<li>property or parameter</li>
+					</ul>
+					<p>use the form @expression</p>
+				</section>
+				<section>
+					<h3>Class Decorator</h3>
+					<pre><code>
+							@sealed
+							class Greeter {
+								greeting: string;
+								constructor(message: string) {
+									this.greeting = message;
+								}
+								greet() {
+									return "Hello, " + this.greeting;
+								}
+							}
+					</code></pre>
+					<pre><code>
+							unction sealed(constructor: Function) {
+								Object.seal(constructor);
+								Object.seal(constructor.prototype);
+							}
+					</code></pre>
+				</section>
+				<section>
+					<p>
+						<small>
+							<a href="https://www.typescriptlang.org/docs/handbook/decorators.html">decorator</a>
+						</small>
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Partial Class</h1>
+
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Use with other framework</h1>
+				</section>
+				<section>
+					<h3>React</h3>
 
 				</section>
 			</section>
