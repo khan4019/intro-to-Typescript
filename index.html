@@ -60,9 +60,14 @@
 				<ol>
 					<li>What problem does Typescript solves</li>
 					<li>Why you should consider Typescript</li>
-					<li>Features in typescript</li>
 					<li>How to run Typescript</li>
+					<li>Features in typescript</li>
+					<li>When not to use Typescript</li>
+
 				</ol>
+			</section>
+			<section>
+				<img src="./images//venn-es5-es6-typescript.png" alt="">
 			</section>
 			<section>
 				<section>
@@ -82,6 +87,11 @@
 				<pre class="typescript"><code data-trim>
 							tsc hello.ts
 					</code></pre>
+				<ul>
+					<li>webpack plugin</li>
+					<li>VS code tooling</li>
+					<li>typescript playground</li>
+				</ul>
 			</section>
 			<section>
 				<section>
@@ -211,6 +221,66 @@ let c: Color = Color.Green;
 			</section>
 			<section>
 				<section>
+					<h1>Function</h1>
+				</section>
+				<section>
+					<pre><code>
+							function add(x: number, y: number): number {
+								return x + y;
+							}
+							
+							let myAdd = function(x: number, y: number): number { return x + y; };
+					</code></pre>
+				</section>
+				<section>
+					<pre><code>
+							let myAdd: (x: number, y: number) => number =
+							function(x: number, y: number): number { return x + y; };
+					</code></pre>
+				</section>
+				<section>
+					<h2>Optional Parameter</h2>
+					<pre><code>
+							function buildName(firstName: string, lastName?: string) {
+								if (lastName)
+									return firstName + " " + lastName;
+								else
+									return firstName;
+							}
+							
+							let result1 = buildName("Bob");                  // works correctly now
+							let result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+							let result3 = buildName("Bob", "Adams");         // ah, just right
+					</code></pre>
+					<p>Any optional parameters must follow required parameters. </p>
+				</section>
+				<section>
+					<h2>Default Parameter</h2>
+					<pre><code>
+							function buildName(firstName: string, lastName = "Smith") {
+								return firstName + " " + lastName;
+							}
+							
+							let result1 = buildName("Bob");                  // works correctly now, returns "Bob Smith"
+							let result2 = buildName("Bob", undefined);       // still works, also returns "Bob Smith"
+							let result3 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+							let result4 = buildName("Bob", "Adams");         // ah, just right
+					</code></pre>
+					<p>Default-initialized parameters that come after all required parameters are treated as optional, </p>
+				</section>
+				<section>
+					<h2>Rest Parameters</h2>
+					<pre><code>
+							function buildName(firstName: string, ...restOfName: string[]) {
+								return firstName + " " + restOfName.join(" ");
+							}
+							
+							let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
+					</code></pre>
+				</section>
+			</section>
+			<section>
+				<section>
 					<h1>Interface</h1>
 				</section>
 				<section>
@@ -274,7 +344,7 @@ let c: Color = Color.Green;
 					</code></pre>
 					<p class="fragment">Variables use const whereas properties use readonly.
 
-						</p>
+					</p>
 				</section>
 			</section>
 			<section>
@@ -282,7 +352,7 @@ let c: Color = Color.Green;
 					<h1>Classes</h1>
 				</section>
 				<section>
-					<pre class="typescript"><code>
+					<pre class="typescript"><code data-trim>
 							class Greeter {
 								greeting: string;
 								constructor(message: string) {
@@ -295,12 +365,77 @@ let c: Color = Color.Green;
 							
 							let greeter = new Greeter("world");
 					</code></pre>
+					<p> each member is public by default</p>
 					<aside class="notes">
 						<p>Compare with ES6</p>
 					</aside>
 				</section>
 				<section>
-					<pre><code>
+					<p>private member cannot be accessed from outside of its containing class.</p>
+					<pre class="typescript"><code data-trim>
+						class Animal {
+							private name: string;
+							constructor(theName: string) { this.name = theName; }
+						}
+						
+						new Animal("Cat").name; // Error: 'name' is private;
+					</code></pre>
+				</section>
+				<section>
+					<h2>Protected</h2>
+					<p>Protected members are like private</p>
+					<p>Can also be accessed within deriving classes</p>
+					<pre class="typescript"><code data-trim>
+							class Person {
+								protected name: string;
+								constructor(name: string) { this.name = name; }
+							}
+							
+							class Employee extends Person {
+								private department: string;
+							
+								constructor(name: string, department: string) {
+									super(name);
+									this.department = department;
+								}
+							
+								public getElevatorPitch() {
+									return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+								}
+							}
+							
+							let howard = new Employee("Howard", "Sales");
+							console.log(howard.getElevatorPitch());
+							console.log(howard.name); // error
+					</code></pre>
+				</section>
+				<section>
+					<h2>Readonly modifier</h2>
+					<p>Readonly properties must be initialized at their declaration or in the constructor.</p>
+					<pre class="typescript"><code data-trim>
+							class Octopus {
+								readonly name: string;
+								readonly numberOfLegs: number = 8;
+								constructor (theName: string) {
+									this.name = theName;
+								}
+							}
+							let dad = new Octopus("Man with the 8 strong legs");
+							dad.name = "Man with the 3-piece suit"; // error! name is readonly.
+							
+					</code></pre>
+				</section>
+				<section>
+					<h2>Accessor</h2>
+				</section>
+				<section>
+					<h2>Static Properties</h2>
+				</section>
+				<section>
+					<h2>Abstract Classes</h2>
+				</section>
+				<section>
+					<pre class="typescript"><code data-trim>
 							class Animal {
 								name: string;
 								constructor(theName: string) { this.name = theName; }
@@ -332,6 +467,28 @@ let c: Color = Color.Green;
 							tom.move(34);
 					</code></pre>
 				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Decorator</h1>
+				</section>
+				<section>
+
+				</section>
+			</section>
+			<section>
+				<h2>Typescript features isn't in ES6</h2>
+				<ul>
+					<li>Decorators</li>
+					<li>Abstract classes</li>
+					<li>Namespace (Module)</li>
+					<li>Enums</li>
+					<li>Generics and Static typing</li>
+					<li>Interfaces</li>
+					<li>Optional properties and arguments</li>
+					<li>Function overloads</li>
+					<li>Access modifiers</li>
+				</ul>
 			</section>
 			<section>
 				<h3>upside</h3>
