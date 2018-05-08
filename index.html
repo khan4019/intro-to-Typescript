@@ -572,35 +572,12 @@ let c: Color = Color.Green;
 				</section>
 				<section>
 					<h3>Class Decorator</h3>
-					<pre class="typescript"><code data-trim>
-							@sealed
-							class Greeter {
-								greeting: string;
-								constructor(message: string) {
-									this.greeting = message;
-								}
-								greet() {
-									return "Hello, " + this.greeting;
-								}
-							}
-					</code></pre>
-					<pre class="typescript"><code data-trim>
-							unction sealed(constructor: Function) {
-								Object.seal(constructor);
-								Object.seal(constructor.prototype);
-							}
-					</code></pre>
+					<img src="./images//angular-component.png" alt="">
 					<p>
 						<small>
 							<a href="https://www.typescriptlang.org/docs/handbook/decorators.html">decorator</a>
 						</small>
 					</p>
-				</section>
-			</section>
-			<section>
-				<section>
-					<h1>Partial Class</h1>
-
 				</section>
 			</section>
 			<section>
@@ -675,19 +652,22 @@ let c: Color = Color.Green;
 				</ul>
 			</section>
 			<section>
-				<h3>upside</h3>
-				<p>It provides advanced autocompletion, navigation, and refactoring. Having such tools is almost a requirement for large
-					projects. </p>
-				<p>TypeScript offers the best developer tooling experience available in the JavaScript world today.
-				</p>
+				<h3>Benefits of Typescript</h3>
+				<ul>
+					<li>Advanced autocompletion</li>
+					<li>Helps navigation, and refactoring</li>
+					<li>Best tooling</li>
+				</ul>
 			</section>
 			<section>
-				<h3>Downside</h3>
-				<p>Type correctness does not guarantee program correctness.</p>
-				<p>The gist: Static types don’t reduce over-all bug density by much, but you may still love them for the developer tooling.</p>
-				<p>Type annotations obviously create more syntax noise, and that syntax makes code harder to read, and harder to maintain.</p>
-				<p>harder to Generic functions & polymorphism Higher order functions Object composition</p>
-				<p>Static types are overrated.</p>
+				<h3>Downside of Typescript</h3>
+				<ul>
+					<li>Type correctness does not guarantee program correctness</li>
+					<li>Static types don’t reduce over-all bug density by much</li>
+					<li>Might create more syntax noise</li>
+					<li>harder to Generic functions & polymorphism Higher order functions Object composition</li>
+					<li>Static types are overrated</li>
+				</ul>
 			</section>
 			<section>
 				<section>
@@ -712,9 +692,10 @@ let c: Color = Color.Green;
 			<section>
 				<h2>References</h2>
 				<ul>
+					<li><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html">Typescript Handbook</a></li>
 					<li>
 						<a href="https://basarat.gitbooks.io/typescript/">
-							<Typescript deep dive/a>
+							Typescript deep dive</a>
 					</li>
 					<li>
 						<a href="https://www.youtube.com/watch?v=5UPMqtrbw7E">Introduction to TypeScript</a>
@@ -726,7 +707,7 @@ let c: Color = Color.Green;
 						<a href="https://eng.lyft.com/typescript-at-lyft-64f0702346ea">TypeScript at Lyft</a>
 					</li>
 					<li>
-						<a href="https://medium.com/javascript-scene/the-shocking-secret-about-static-types-514d39bf30a3"></a>The Shocking Secret About Static Types</li>
+						<a href="https://medium.com/javascript-scene/the-shocking-secret-about-static-types-514d39bf30a3">The Shocking Secret About Static Types</a></li>
 					<li>
 						<a href="https://medium.com/javascript-scene/you-might-not-need-typescript-or-static-types-aa7cb670a77b">You Might Not Need TypeScript</a>
 					</li>
