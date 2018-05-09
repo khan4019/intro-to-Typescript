@@ -149,8 +149,9 @@
 						<li>Large projects</li>
 						<li>External modules and libraries</li>
 						<li>.Net or Java background</li>
-						<li>Angular2</li>
+						
 						<li>Javascript future features(ES7)</li>
+						<li class="fragment">Angular2</li>
 						<li class="fragment">Your manager told you to use it</li>
 					</ul>
 				</section>
@@ -177,6 +178,9 @@
 						<li>webpack plugin</li>
 						<li>tsconfig.json</li>
 					</ul>
+					<br>
+					<br>
+					<p><small><a target="_blank" href="https://www.typescriptlang.org/play/">typescriptlang.org/play</a></small></p>
 				</section>
 			</section>
 			<section>
@@ -207,7 +211,8 @@
 							let actor: string = 'Tom Hanks';
 							
 							let nums: number[] = [1, 2, 3, 4, 5]
-							let friends:string[] = ['BatMan', 'CatMan', 'FatMan', 'GoatMan']
+							let friends:string[] 
+							        = ['BatMan', 'CatMan', 'FatMan', 'GoatMan']
 						</code></pre>
 					<pre class="fragment typescript"><code data-trim>
 							
@@ -246,8 +251,8 @@ names = ['Tom cruise', 'Tom Hancks', 'Tom nobody']
 							
 							
 							
-							salaryBox[2] = 'abc'
-							// salaryBox[3] = true
+							type IDictionary = [sting, number];
+							let salaryBox: IDictionary = ['GoatMan', 22000];
 							
 					</code></pre>
 					<aside class="notes">
@@ -257,6 +262,7 @@ names = ['Tom cruise', 'Tom Hancks', 'Tom nobody']
 				</section>
 				<section>
 					<h2>Enum</h2>
+					<p>Give friendly names to sets of numeric values</p>
 					<pre class="typescript"><code data-trim>
 
 							enum Color {Red, Green, Blue}
@@ -516,14 +522,14 @@ let c: Color = Color.Green;
 					<pre class="typescript"><code data-trim>
 							abstract class Department {
 
-								constructor(public name: string) {
-								}
+							  constructor(public name: string) {
+							  }
 							
-								printName(): void {
-									console.log("Department name: " + this.name);
-								}
-								// must be implemented in derived classes
-								abstract printMeeting(): void; 
+							  printName(): void {
+							    console.log("Department name: " + this.name);
+							  }
+							  // must be implemented in derived classes
+							  abstract printMeeting(): void; 
 							}
 					</code></pre>
 					<p><small> Unlike an interface, an abstract class may contain implementation details for its members. </small></p>
@@ -533,26 +539,25 @@ let c: Color = Color.Green;
 					<h2>Mixins</h2>
 					<pre class="typescript"><code data-trim>
 							class Disposable {
-								isDisposed: boolean;
-								dispose() {
-									this.isDisposed = true;
-								}
-							
+							  isDisposed: boolean;
+							  dispose() {
+							    this.isDisposed = true;
+							  }
 							}
 					</code></pre>
 					<pre class="typescript"><code data-trim>
 							class Activatable {
-								isActive: boolean;
-								activate() {
-									this.isActive = true;
-								}
-								deactivate() {
-									this.isActive = false;
-								}
+							  isActive: boolean;
+							  activate() {
+							    this.isActive = true;
+							  }
+							  deactivate() {
+							    this.isActive = false;
+							  }
 							}
 					</code></pre>
 					<pre class="fragment typescript"><code data-trim>
-							class SmartObject implements Disposable, Activatable {
+							class SmartObject implements Disposable, Activatable {}
 					</code></pre>
 				</section>
 			</section>
@@ -668,6 +673,44 @@ let c: Color = Color.Green;
 					<li>harder to Generic functions & polymorphism Higher order functions Object composition</li>
 					<li>Static types are overrated</li>
 				</ul>
+			</section>
+			<section>
+				<section>
+					<h1>Async Await</h1>
+				</section>
+				<section>
+					<h2>Promise</h2>
+				</section>
+				<section>
+					<pre><code>
+						function add(x, y){
+							return x + y;
+						}
+					</code></pre>
+					<pre class="fragment"><code>
+						async function add(x,y){
+							return x + y;
+						}
+					</code></pre>
+				</section>
+				<section>
+					<pre><code>
+						function doubleAfter2Sec(x){
+							return new Promise(resolve =>{
+								setTimeout(()=>{
+									resolve(x*2);
+								}, 2000)
+							});
+						}
+					</code></pre>
+					<pre class="fragment">
+						<code>
+							doubleAfter2Sec(10).then((r)=>{
+								console.log(r);
+							})
+						</code>
+					</pre>
+				</section>
 			</section>
 			<section>
 				<section>
