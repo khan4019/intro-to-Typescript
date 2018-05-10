@@ -691,19 +691,7 @@ let c: Color = Color.Green;
 					<h2>Promise</h2>
 				</section>
 				<section>
-					<pre><code>
-						function add(x, y){
-							return x + y;
-						}
-					</code></pre>
-					<pre class="fragment"><code>
-						async function add(x,y){
-							return x + y;
-						}
-					</code></pre>
-				</section>
-				<section>
-					<pre><code>
+					<pre><code data-trim>
 						function doubleAfter2Sec(x){
 							return new Promise(resolve =>{
 								setTimeout(()=>{
@@ -713,7 +701,7 @@ let c: Color = Color.Green;
 						}
 					</code></pre>
 					<pre class="fragment">
-						<code>
+						<code data-trim>
 							doubleAfter2Sec(10).then((r)=>{
 								console.log(r);
 							})
@@ -721,8 +709,51 @@ let c: Color = Color.Green;
 					</pre>
 				</section>
 				<section>
-
+					<pre class="javascript"><code data-trim>
+							let sum =   doubleAfter2Seconds(10)
+							+ doubleAfter2Seconds(20)
+							+ doubleAfter2Seconds(30);
+				  console.log(sum);
+				  // undefined
+					</code></pre>
+					<pre class="javascript"><code data-trim>
+						function addPromise(x){
+							return new Promise(resolve => {
+							  doubleAfter2Seconds(10).then((a) => {
+								doubleAfter2Seconds(20).then((b) => {
+								  doubleAfter2Seconds(30).then((c) => {
+									resolve(x + a + b + c);
+								  })
+								})
+							  })
+							});
+						  }
+					</code></pre>
 				</section>
+				<section>
+					<pre><code data-trim>
+							async function addAsync(x) {
+								const a = await doubleAfter2Seconds(10);
+								const b = await doubleAfter2Seconds(20);
+								const c = await doubleAfter2Seconds(30);
+								return x + a + b + c;
+							  }
+					</code></pre>
+					<br><br>
+					<p><small><a href="https://codeburst.io/javascript-es-2017-learn-async-await-by-example-48acc58bad65">async await by example</a></small></p>
+				</section>
+				<section>
+						<pre><code data-trim>
+							function add(x, y){
+							  return x + y;
+							}
+						</code></pre>
+						<pre class="javascript fragment"><code data-trim>
+							async function add(x,y){
+							  return x + y;
+							}
+						</code></pre>
+					</section>
 			</section>
 			<section>
 				<section>
